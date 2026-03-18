@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI导演工作室 - 电影级漫剧生成</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div class="logo">🎬 AI导演工作室</div>
+<div class="nav">
+<a href="login.html">登录</a>
+<a href="pay.html">会员充值</a>
+<a href="#" id="logout">退出登录</a>
+</div>
+</div>
+
+<div class="banner">
+<h1>AI 导演 · 一键生成电影级漫剧</h1>
+<p>别人的AI：好看但没镜头逻辑</p>
+<p><b>你的AI：自带运镜 + 光影 + 构图 + 叙事</b></p>
+<p>即梦 / 可灵平替 · 价格便宜近一半</p>
+</div>
+
+<div class="card">
+<h3>🎨 画布编辑器</h3>
+<canvas id="canvas" width="800" height="450"></canvas>
+<div class="upload">
+<button onclick="document.getElementById('refImg').click()">上传参考图</button>
+<input type="file" id="refImg" style="display:none;">
+</div>
+</div>
+
+<div class="card">
+<h3>🎬 选择导演风格</h3>
+<div class="director-list">
+<div class="director active">王家卫</div>
+<div class="director">诺兰</div>
+<div class="director">张艺谋</div>
+<div class="director">奉俊昊</div>
+<div class="director">昆汀</div>
+<div class="director">是枝裕和</div>
+<div class="director">库布里克</div>
+<div class="director">伍迪·艾伦</div>
+<div class="director">大卫·芬奇</div>
+<div class="director">宫崎骏</div>
+</div>
+</div>
+
+<div class="card">
+<h3>📝 提示词编辑</h3>
+<textarea id="prompt">AI导演模式：王家卫风格
+镜头：缓慢推进，逆光轮廓光
+光影：暖黄路灯，蓝青色调，雨夜霓虹
+构图：倾斜构图，浅景深，玻璃折射
+氛围：潮湿暧昧，疏离情绪流，电影级4K高清</textarea>
+<div class="btns">
+<button onclick="copyPrompt()">📋 复制提示词</button>
+<button onclick="generateImage()">🖼️ 生成图片</button>
+<button onclick="generateVideo()">🎥 生成视频</button>
+</div>
+</div>
+
+<div class="card">
+<h3>🖼️ 生成结果</h3>
+<div id="result"></div>
+</div>
+
+<div class="card">
+<h3>📌 作品案例</h3>
+<div class="cases">
+<img src="https://picsum.photos/id/237/300/160">
+<img src="https://picsum.photos/id/1005/300/160">
+<img src="https://picsum.photos/id/1015/300/160">
+</div>
+</div>
+</div>
+
+<script>
+// 导演切换
+document.querySelectorAll('.director').forEach(item => {
+item.addEventListener('click', () => {
+document.querySelectorAll('.director').forEach(i => i.classList.remove('active'));
+item.classList.add('active');
+document.getElementById('prompt').value = `AI导演模式：${item.innerText}风格
+镜头：缓慢推进，逆光轮廓光
+光影：暖黄路灯，蓝青色调，雨夜霓虹
+构图：倾斜构图，浅景深，玻璃折射
+氛围：潮湿暧昧，疏离情绪流，电影级4K高清`;
+})
+})
+
+// 复制
+function copyPrompt() {
+navigator.clipboard.writeText(document.getElementById('prompt').value);
+alert('✅ 复制成功！');
+}
+
+// 生成图片（模拟）
+function generateImage() {
+document.getElementById('result').innerHTML = `<img src="https://picsum.photos/id/96/600/330" style="width:100%;border-radius:10px">`;
+}
+
+// 生成视频（模拟）
+function generateVideo() {
+document.getElementById('result').innerHTML = `<video controls src="https://www.w3school.com.cn/i/movie.mp4" style="width:100%;border-radius:10px"></video>`;
+}
+
+// 退出登录
+document.getElementById('logout').onclick = () => {
+localStorage.clear();
+location.href='login.html';
+}
+</script>
+</body>
+</html>
